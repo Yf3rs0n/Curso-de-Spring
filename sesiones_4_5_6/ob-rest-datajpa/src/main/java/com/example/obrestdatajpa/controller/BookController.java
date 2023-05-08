@@ -19,9 +19,8 @@ public class BookController {
     }
 
     //CRUD
-    //Busca (lista de libros)
-
     /**
+     * Busca en BD (ArrayList libros)
      * http://localhost:80/api/books
      * @return
      */
@@ -33,12 +32,13 @@ public class BookController {
     }
 
     /**
+     * Buscar por ID
+     * http://localhost:80/api/books/1
      * Request - Peticion
      * Response - Respuesta
      * @param id
      * @return
      */
-    //Buscar por ID
     @GetMapping("/api/books/{id}")//Buscador
     public ResponseEntity<Book> findOneById(@PathVariable Long id){//Para que funcione\
         Optional <Book> bookOpt = bookRepository.findById(id);
@@ -48,17 +48,24 @@ public class BookController {
         else
             return ResponseEntity.notFound().build();
         //opcion 2
-//        return bookOpt.orElse(null);
-//        return bookOpt.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        //return bookOpt.orElse(null);
+        //return bookOpt.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    /**
+     * Metodo Post, no coliciona con findAll porque son diferentes metodos Http: Get vs Post
+     * @param book
+     * @param headers
+     * @return
+     */
     //Crear - Guardar
     @PostMapping("/api/books")
     public Book create(@RequestBody Book book, @RequestHeader HttpHeaders headers){
         System.out.println(headers.get("User-Agent"));//Leer las cabeceras
         //Guardar el libro recibido por parametro en la base de datos
-        return bookRepository.save(book);
+        return bookRepository.save(book);// se genera el libro devuelto tiene una clave primaria
     }
-
     //Actializar
+
     //Borrar
 }

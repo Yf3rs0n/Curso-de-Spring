@@ -15,13 +15,8 @@ public class LaptopController {
         this.laptopRepository = laptopRepository;
     }
 
-    /**
-     *
-     * @return
-     */
     @GetMapping("/api/laptops")
     public List<Laptop> findAll(){
-        //Recuperar y Devolver los libros de la BD
         return laptopRepository.findAll();
 
     }
