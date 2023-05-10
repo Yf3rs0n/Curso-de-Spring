@@ -12,7 +12,7 @@
 	<artifactId>ob-rest-datajpa</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ob-rest-datajpa</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo project for Spring Boot prueba</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -42,6 +42,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+
+
 	</dependencies>
 
 	<build>
