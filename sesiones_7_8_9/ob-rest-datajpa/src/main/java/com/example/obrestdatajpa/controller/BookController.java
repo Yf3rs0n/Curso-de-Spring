@@ -2,14 +2,14 @@ package com.example.obrestdatajpa.controller;
 
 import com.example.obrestdatajpa.entities.Book;
 import com.example.obrestdatajpa.repository.BookRepository;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 import java.util.Optional;
@@ -49,8 +49,8 @@ public class BookController {
      */
     // buscar un solo libro en base de datos segun su id
     @GetMapping("/api/books/{id}")
-    @ApiOperation("Buscar un libro por clave primaria id Long")
-    public ResponseEntity<Book> findOneById(@ApiParam("Clave primaria tipo Long") @PathVariable Long id){
+    @Operation(summary = "Buscar un libro por clave primaria id Long")
+    public ResponseEntity<Book> findOneById(@Parameter(name = "Clave primaria tipo Long") @PathVariable Long id){
 
         Optional<Book> bookOpt = bookRepository.findById(id); // 3456546456435
         // opcion 1
@@ -104,7 +104,7 @@ public class BookController {
         return ResponseEntity.ok(result); // el libro devuelto tiene una clave primaria
     }
 
-    @ApiIgnore
+    @Hidden
     @DeleteMapping("/api/books/{id}")
     public ResponseEntity<Book> delete(@PathVariable Long id){
 
@@ -117,7 +117,7 @@ public class BookController {
 
         return ResponseEntity.noContent().build();
     }
-    @ApiIgnore // ignorar este método para que no aparezca en la documentación de la api Swagger
+    @Hidden // ignorar este método para que no aparezca en la documentación de la api Swagger
     @DeleteMapping("/api/books")
     public ResponseEntity<Book> deleteAll(){
         log.info("REST Request for delete all books");

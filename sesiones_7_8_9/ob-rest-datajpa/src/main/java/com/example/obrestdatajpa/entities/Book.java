@@ -1,25 +1,26 @@
 package com.example.obrestdatajpa.entities;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
-import javax.persistence.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "books")
-@ApiModel("Entidad libro para representar un elemento didáctico compuesto por láminas de celulosa macerada en Puerto Rico")
+@Schema(description= "Entidad libro para representar un elemento didáctico compuesto por láminas de celulosa macerada en Puerto Rico")
 public class Book {
 
     // atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty("Clave ficticia autoincremental tipo Long")
+    @Schema(description=  "Clave ficticia autoincremental tipo Long")
     private Long id;
     private String title;
     private String author;
     private Integer pages;
-    @ApiModelProperty("Precio en rupias, con dos decimales utiliando . como separador")
+    @Schema(description= "Precio en rupias, con dos decimales utiliando . como separador")
     private Double price;
     private LocalDate releaseDate;
     private Boolean online;
