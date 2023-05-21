@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:mysql://localhost/universidad?createDatabaseIfNotExist=true
+    username : root
+    password: root
+server:
+  port: 8282
