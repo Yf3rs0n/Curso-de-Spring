@@ -36,15 +36,37 @@ public class CitaService {
     }
 
     //Method to update
-    public Cita actualizarCita(Cita cita) {
+    public Cita actualizarCita(Long id, Cita cita) {
         cita.setId(cita.getId());
         return citaRepository.save(cita);
     }
 
     //method to remove
-    public void eliminarPorId(Long id) {
-        citaRepository.deleteById(id);
+//    public void eliminarPorId(Long id) {
+//        citaRepository.deleteById(id);
+//    }
+
+    public void deleteCita(Long id) {
+        // Get the cita from the database.
+        Cita cita = citaRepository.findById(id).get();
+
+        // Change the state of the cita to "deleted".
+        cita.setEstado("Eliminada");
+
+        // Save the cita to the database.
+        citaRepository.save(cita);
     }
+
+    public void actualizarCitaEstado(Long id, String estado) {
+        // Get the cita from the database.
+        Cita cita = citaRepository.findById(id).get();
+        // Change the state of the cita.
+        cita.setEstado(estado);
+        // Save the cita to the database.
+        citaRepository.save(cita);
+    }
+
+
 
     //Methods to search according to attributes of the class
     public List<Cita> buscarNombre(String nombre) {
@@ -65,6 +87,12 @@ public class CitaService {
 
     public List<Cita> buscarUbicacion(String ubicacion) {
         return citaRepository.findByubicacion(ubicacion);
+    }
+    public List<Cita> buscarDetalles(String detalles) {
+        return citaRepository.findBydetalles(detalles);
+    }
+    public List<Cita> buscaEstado(String estado) {
+        return citaRepository.findByestado(estado);
     }
 
 }

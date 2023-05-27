@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
+import java.sql.Time;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -29,7 +30,7 @@ public class Cita {
     private Date fecha;
 
     @Column(name = "hora")
-    private LocalTime hora;
+    private Time hora;
 
     @Column(name = "duracion")
     private int duracion;
@@ -43,7 +44,12 @@ public class Cita {
     @Column(name = "estado")
     private String estado;
 
-// constructores, getters y setters...
+    @Column(name = "tipo_cita")
+    private String tipo_cita;
+
+    @Column(name = "notas_internas", columnDefinition = "TEXT" )
+    private String notas_internas;
+
 
 
 }
