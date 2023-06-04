@@ -95,5 +95,6 @@ public class CitaService {
         return citaRepository.findByestado(estado);
     }
 
+
 }
 
